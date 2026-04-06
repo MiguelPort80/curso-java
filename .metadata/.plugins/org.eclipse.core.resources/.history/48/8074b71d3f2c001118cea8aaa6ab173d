@@ -1,0 +1,29 @@
+package aplication;
+
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+import entities.Student;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		IO.print("How many students you for course A? ");
+		int count = sc.nextInt();
+		//Set<Student> students = new HashSet<Student>();
+		//Student st = new Student();
+		Set<Integer> students = new HashSet<Integer>();
+		
+		for (int i = 0; i < count; i++) {
+			
+			students.add(sc.nextInt());
+		}
+		
+		for (Integer student : students) {
+			System.out.println(student.toString());
+		}
+	}
+
+}

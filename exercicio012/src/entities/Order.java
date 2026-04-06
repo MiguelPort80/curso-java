@@ -1,0 +1,42 @@
+package entities;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+public class Order {
+	private LocalDate moment;
+	private OrdemStatus status;
+	private ArrayList<OrdemItem> list = new ArrayList<>();
+	
+	public void addItem(OrdemItem item) {
+		list.add(item);
+		
+	}
+	
+	public void removeItem(OrdemItem item) {
+		list.remove(item);
+	}
+	
+	public double total() {
+		double aux = 0;
+		for (OrdemItem ordemItem : list) {
+			aux += ordemItem.subTotal();
+			
+		}
+		return aux;
+	}
+
+	public OrdemStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrdemStatus status) {
+		this.status = status;
+	}
+
+	public LocalDate getMoment() {
+		moment = LocalDate.now();
+		return moment;
+	}
+
+}

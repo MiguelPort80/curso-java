@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;entities.CurrencyConverter.dolares&apos; in &apos;entities.CurrencyConverter&apos;&#x0A;- Original project: &apos;exercicioestatico&apos;&#x0A;- Original element: &apos;entities.CurrencyConverter.dolares&apos;&#x0A;- Getter method name: &apos;getDolares&apos;&#x0A;- Setter method name: &apos;setDolares&apos;&#x0A;- Field visibility: &apos;public&apos;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;dolares, ...&apos;" flags="589830" getter="getDolares" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;entities{CurrencyConverter.java[CurrencyConverter^dolares" insertion="1" setter="setDolares" stamp="1771591625200" version="1.0" visibility="1"/>
+</session>

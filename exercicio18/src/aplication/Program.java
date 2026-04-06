@@ -1,0 +1,66 @@
+package aplication;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import entities.User;
+public class Program {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+        
+        Path pathOrigem = Paths.get("/tmp/input.csv");
+        try (BufferedReader br = Files.newBufferedReader(pathOrigem)) {
+        	String linha;
+        	List<User> lista = new ArrayList<User>();
+        	while ((linha = br.readLine()) != null) {
+        		String[] campos = linha.split(",");
+            	User user = new User();
+        		String name = campos[0];
+        		String email = campos[1];
+        		Double salary = Double.valueOf(campos[2]);
+        		user.setName(name);
+        		user.setEmail(email);
+        		user.setSalary(salary);
+            	lista.add(user);
+        		
+        	}
+        	
+        	Scanner sc = new Scanner(System.in);
+        	IO.println("Enter Salary: ");
+        	Double sl = sc.nextDouble();
+        	
+        	List<User> resultado1 = lista.stream()
+        			.sorted((p1, p2) -> p1.getEmail().compareToIgnoreCase(p2.getEmail()))
+        			.filter(p -> p.getSalary() > sl)
+        			.collect(Collectors.toList());
+        			
+    		IO.println("Email of people whose salary is more than 2000.00");
+        	for (User string : resultado1) {
+				IO.println(string.getEmail());
+			}
+        	
+        	List<User> resultado2 = lista.stream()
+        			.filter(p -> p.getName().toUpperCase().startsWith("M"))
+        			.collect(Collectors.toList());
+        	
+        	double resultado3 = resultado2.stream()
+        			.map(User::getSalary)
+        			.reduce(0.0, (sum, salary) -> sum + salary );
+        	
+        	IO.println("Sum of salary of people whose name starts with 'M'" + resultado3);
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
