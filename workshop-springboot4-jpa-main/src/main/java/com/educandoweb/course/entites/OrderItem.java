@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import com.educandoweb.course.entites.pk.OrderItemPK;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -12,6 +13,7 @@ import jakarta.persistence.Table;
 @Table(name="tb_order_item")
 public class OrderItem implements Serializable{
 	private static final long serialVersionUID = 1L;
+	@EmbeddedId
 	private OrderItemPK id;
 	private Integer quantity;
 	private Double price;
