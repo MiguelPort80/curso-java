@@ -33,7 +33,7 @@ public class Product implements Serializable{
 	@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name="productIs"), inverseJoinColumns = @JoinColumn(name="categoryId"))
 	private Set<Category> categories = new HashSet<>();
 	
-	@OneToMany(mappedBy="id.order")
+	@OneToMany(mappedBy="id.product")
 	private Set<OrderItem> items = new HashSet<>();
 	
 	public Product() {

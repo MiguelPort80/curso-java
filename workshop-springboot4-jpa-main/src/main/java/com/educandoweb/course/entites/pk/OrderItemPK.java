@@ -3,6 +3,8 @@ package com.educandoweb.course.entites.pk;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.hibernate.dialect.function.QuantifiedLeastGreatestEmulation;
+
 import com.educandoweb.course.entites.Order;
 import com.educandoweb.course.entites.Product;
 
@@ -32,6 +34,9 @@ public class OrderItemPK implements Serializable{
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+	
+
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(order, product);
