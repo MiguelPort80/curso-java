@@ -1,5 +1,6 @@
 package com.educandoweb.course.resources;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.educandoweb.course.entites.User;
+import com.educandoweb.course.resources.exceptions.DatabaseException;
 import com.educandoweb.course.services.UserService;
 
 @RestController
@@ -47,7 +49,12 @@ public class UserResource {
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
-		service.delete(id);
+		try {
+			service.delete(id);
+		} catch (RuntimeException | SQLIntegrityConstraintViolationException e) {
+			IO.print("FUCK YOU SPRING");
+			throw new DatabaseException(e.getMessage());
+		}
 		return ResponseEntity.noContent().build();
 	}
 	

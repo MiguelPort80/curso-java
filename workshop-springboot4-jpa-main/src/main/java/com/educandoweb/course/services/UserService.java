@@ -1,13 +1,17 @@
 package com.educandoweb.course.services;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.educandoweb.course.entites.User;
 import com.educandoweb.course.repository.UserRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UserService {
@@ -26,7 +30,7 @@ public class UserService {
 	
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.orElseThrow( () -> new jakarta.persistence.EntityNotFoundException());
+		return obj.orElseThrow( () -> new EntityNotFoundException());
 	}
 	
 	
@@ -34,8 +38,10 @@ public class UserService {
 		return repository.save(obj);
 	}
 	
-	public void delete(Long id) {
+	public void delete(Long id) throws SQLIntegrityConstraintViolationException {
+		
 		repository.deleteById(id);
+		
 	}
 	
 	private void updateData(User entity, User obj) {
