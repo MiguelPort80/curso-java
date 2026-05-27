@@ -9,8 +9,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.educandoweb.course.entites.User;
-import com.educandoweb.course.repository.UserRepository;
 
+import dev.miguel.security.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service

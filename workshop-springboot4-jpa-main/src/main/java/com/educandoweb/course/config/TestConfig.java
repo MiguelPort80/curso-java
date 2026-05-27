@@ -18,7 +18,8 @@ import com.educandoweb.course.repository.CategoryRepository;
 import com.educandoweb.course.repository.OrderItemRepository;
 import com.educandoweb.course.repository.OrderRepository;
 import com.educandoweb.course.repository.ProductRepository;
-import com.educandoweb.course.repository.UserRepository;
+
+import dev.miguel.security.repository.UserRepository;
 
 @Configuration
 @Profile("test")
