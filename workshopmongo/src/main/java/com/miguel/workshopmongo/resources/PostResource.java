@@ -1,5 +1,6 @@
 package com.miguel.workshopmongo.resources;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.miguel.workshopmongo.entites.Post;
-import com.miguel.workshopmongo.resources.util.URI;
+import com.miguel.workshopmongo.resources.util.URL;
 import com.miguel.workshopmongo.service.PostService;
 
 @RestController
@@ -33,8 +34,8 @@ public class PostResource {
 	}
 	
 	@GetMapping(value="/titlesearch")
-	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value="text", defaultValue = "") String text){
-		text = URI.decodeParam(text);
+	public ResponseEntity<List<Post>> findByTitle(@RequestParam(defaultValue = "") String text){
+		text = URL.decodeParam(text);
 		
 		
 		List<Post> list = service.findByTitleContaining(text);
@@ -42,5 +43,22 @@ public class PostResource {
 
 		return ResponseEntity.ok().body(list);
 	}
-	
+	@GetMapping(value="/fullsearch")
+	public ResponseEntity<List<Post>> fullSearchh(
+		   @RequestParam(defaultValue = "") String text,
+		   @RequestParam(defaultValue = "") String minDate,
+		   @RequestParam(defaultValue = "") String maxDate
+		   ){
+		
+		
+		text = URL.decodeParam(text);
+		Date min = URL.convertDate(minDate, new Date(0L));
+		Date max = URL.convertDate(maxDate, new Date());
+
+		
+		List<Post> list = service.fullSearch(text, min, max);
+		
+
+		return ResponseEntity.ok().body(list);
+	}
 }
